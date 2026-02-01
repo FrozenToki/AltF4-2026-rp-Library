@@ -3,7 +3,7 @@
 
 OutputManager::OutputManager(Application* a) : app(a) {}
 
-void OutputManager::createTeensy(UART* s, String n) {
+void OutputManager::createTeensy(UART& s, String n) {
 	Teensy* t = new Teensy(s, n); 
 	app->getOutputList().addOutput(t);
 }

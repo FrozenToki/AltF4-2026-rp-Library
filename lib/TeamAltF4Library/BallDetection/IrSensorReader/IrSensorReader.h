@@ -14,6 +14,7 @@ private:
 public:
 	IrSensorReader(Application* a);
 	void readAll(int ticks, bool time = false, long unsigned int timeInMicSec = 0);
+	void setAll();
 	void getAllValues(float array[]);
 	float frequencyInMilSec(int timeInMicSec, float sensHits);
 };

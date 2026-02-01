@@ -38,6 +38,13 @@ float IrSensorReader::frequencyInMilSec(int timeInMicSec, float sensHits) {
 
 void IrSensorReader::getAllValues(float array[]) {
 	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
-		array[i] = frequencyInMilSec(lastReadingTime, irSensList[i]->getValue());
+		array[i] = irSensList[i]->getCalculatedValue();
 	}
 }
+
+void IrSensorReader::setAll() {
+	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
+		irSensList[i]->setCalculatedValue(frequencyInMilSec(lastReadingTime, irSensList[i]->getValue())); 
+	}
+}
+

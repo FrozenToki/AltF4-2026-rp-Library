@@ -1,8 +1,8 @@
 #include "IrSensors.h"
 
 IrSensor::IrSensor(int p, String n, float a) : SensorBase(n), pin(p), angle(a) {
-		type = IR_SENS;
-    pinMode(p, INPUT_PULLUP);
+	type = IR_SENS;
+	pinMode(p, INPUT_PULLUP);
 }
 
 float IrSensor::getAngle() {
@@ -21,4 +21,20 @@ float IrSensor::getValue() {
 
 void IrSensor::resetValue() {
 	value = 0.0f;
+}
+
+float IrSensor::getCalculatedValue(){
+	return calculatedValue;
+}
+
+void IrSensor::setCalculatedValue(float v) {
+	calculatedValue = v;
+}
+
+Vector IrSensor::getVector() {
+	return vec;
+}
+
+void IrSensor::setVector(const Vector& v) {
+	vec = v;
 }

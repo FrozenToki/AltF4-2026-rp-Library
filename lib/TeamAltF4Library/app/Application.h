@@ -8,6 +8,8 @@
 #include "Config/Config.h"
 #include "Debugging/Errors/ErrorMessages.h"
 #include "BallDetection/IrSensorReader/IrSensorReader.h"
+#include "BallDetection/BallPositionReader/BallPositionReader.h"
+#include "BallDetection/Geometrie/Geometrie.h"
 
 
 // Used to get acces to all the parts of the library from anywhere in the programm.
@@ -25,6 +27,10 @@ private:
 	ErrorMessages errorMessages;
 
 	IrSensorReader irSensorReader;
+
+	BallPositionReader ballPositionReader;
+
+	Geometrie geometrie;
 public:
 	SensorList& getSensorList();
 	SensorManager& getSensorManager();
@@ -38,6 +44,10 @@ public:
 
 	IrSensorReader& getIrSensorReader();
 
+	BallPositionReader& getBallPositionReader();
+
+	Geometrie& getGeometrie();
+	
 	Application();
 };
 	

@@ -4,8 +4,9 @@
 
 class Teensy : public OutputBase {
 private: 
-	UART* serialConnection;
+	UART& serialConnection;
 public: 
-	Teensy(UART* serial, String n);
+	Teensy(UART& serial, String n);
 	void send(String text);
+	void send(float text);
 };
