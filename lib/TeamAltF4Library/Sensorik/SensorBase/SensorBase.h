@@ -21,6 +21,7 @@ public:
 	int& getPinRef();
 	String& getNameRef();
 
+ 	virtual float getAngle() = 0;
 
 	virtual void update() = 0;
 	virtual float getValue() = 0;

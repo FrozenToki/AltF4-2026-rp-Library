@@ -16,4 +16,6 @@ public:
 	static const int IR_SENSOR_PINS[COUNT_IR_SENSOR];
 	static const char* IR_SENSOR_NAMES[COUNT_IR_SENSOR];
 	static const float IR_SENSOR_ANGLES[COUNT_IR_SENSOR];
+
+	static constexpr int COUNT_MOVING_AVERAGE = 3;
 };

@@ -6,7 +6,9 @@ IrSensorReader::IrSensorReader(Application* a) : app(a) {
 		irSensList[i] = app->getSensorManager().getIrSensorByIndex(i);
 	}
 }
-
+/*
+* Kommentar
+*/
 void IrSensorReader::readAll(int ticks, bool useTimeMode, long unsigned int timeInMicSec) {
 	for (int s = 0; s < Config::COUNT_IR_SENSOR; s++) {
 		irSensList[s]->resetValue();
@@ -42,9 +44,12 @@ void IrSensorReader::getAllValues(float array[]) {
 	}
 }
 
+/**
+ * Werte in die Sensor Liste eintragen
+ */
 void IrSensorReader::setAll() {
 	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
-		irSensList[i]->setCalculatedValue(frequencyInMilSec(lastReadingTime, irSensList[i]->getValue())); 
+		irSensList[i]->setCalculatedValue(irSensList[i]->getValue()); 
 	}
 }
 

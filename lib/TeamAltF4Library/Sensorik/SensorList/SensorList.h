@@ -17,6 +17,7 @@ public:
 	SensorList(Application* a);
 	static void addSensor(SensorBase* s);
 	static SensorBase* getSensorByName(const String& n);
+	static SensorBase* getSensorByAngle(float angle);
 	static SensorBase* get(int index);
 	static int getSensorCount();
 };

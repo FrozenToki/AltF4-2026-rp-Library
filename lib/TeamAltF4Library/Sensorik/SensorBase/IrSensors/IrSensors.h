@@ -5,20 +5,24 @@
 
 class IrSensor : public SensorBase {
 private:
-    int pin;
-		float angle;
-		float calculatedValue;
-		Vector vec;
+	int pin;
+	float angle;
+	float avrgAngle;
+	float calculatedValue;
+	Vector vec;
 public:
-    IrSensor(int p, String n, float a);
-    void update() override;
-		float getValue() override;
-		float getCalculatedValue();
-		void setCalculatedValue(float v);
-		void resetValue();
-		
-		void setVector(const Vector& v);
-		Vector getVector();
+	IrSensor(int p, String n, float a);
+	void update() override;
+	float getValue() override;
+	float getCalculatedValue();
+	void setCalculatedValue(float v);
+	void resetValue();
+	
+	void setVector(const Vector& v);
+	Vector getVector();
 
-		float getAngle();
+	float getAngle();
+	
+	void setAvrgAngle(float v);
+	float getAvrgAngle();
 };  

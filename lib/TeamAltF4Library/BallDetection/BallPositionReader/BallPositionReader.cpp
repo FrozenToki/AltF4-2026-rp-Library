@@ -6,31 +6,68 @@ BallPositionReader::BallPositionReader(Application* a) : app(a) {
 		irSensList[i] = app->getSensorManager().getIrSensorByIndex(i);
 	}
 	valueList.resize(Config::COUNT_IR_SENSOR);
+	highSensValAvrg.resize(5);
+	highSensAngleAvrg.resize(5);
 
+	for (size_t i = 0; i < 5; i++) {
+		highSensAngleAvrg[i] = new MovingAverage(Config::COUNT_MOVING_AVERAGE);
+		highSensValAvrg[i] = new MovingAverage(Config::COUNT_MOVING_AVERAGE);
+	}
 }
-
+/**
+ * Werte aus SensorListe in die Werte Liste eintragen
+ */
 void BallPositionReader::setValues() {
 	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
 		valueList.at(i)  = irSensList[i]->getCalculatedValue();
 	}
 }
 
+/**
+ * Finde den Sensor mit dem höchsten Wert
+ * und jeweils 2 links und rechts davon
+ */
 void BallPositionReader::setHighestSensor() {
 
-	
-	mean = app->getGeometrie().getMean(valueList);
-
 	hightestSensors.clear();
-
-	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
-		if (irSensList[i]->getCalculatedValue() >= mean) {
-			hightestSensors.push_back(irSensList[i]);
+	
+	IrSensor* hightestSensor = irSensList[0];
+	int highestSensorIndex=0;
+	for (size_t i = 1; i < Config::COUNT_IR_SENSOR; i++) {
+		if (hightestSensor->getCalculatedValue() <= irSensList[i]->getCalculatedValue()) {
+			hightestSensor = irSensList[i];
+	    highestSensorIndex = i;
 		}
 	}
-}
 
-float BallPositionReader::getMean() {
-	return mean;
+	hightestSensors.push_back(hightestSensor);
+	
+	for (int i = 0; i < 2; i++) {
+		int index = highestSensorIndex + (1 + i);
+		if (index > 15 ) {
+			index -= 16;
+		}
+		hightestSensors.push_back(app->getSensorManager().getIrSensorByIndex(index));	
+	}
+	
+	for (int i = 0; i < 2; i++) {
+		int index = highestSensorIndex - (1 + i);
+		if (index < 0 ) {
+			index += 16;
+		}
+		hightestSensors.push_back(app->getSensorManager().getIrSensorByIndex(index));	
+	}
+
+
+	//for (size_t i = 0; i < 5; i++) {
+	//	highSensValAvrg[i]->newValue(hightestSensors[i]->getCalculatedValue());
+	//	hightestSensors[i]->setCalculatedValue(highSensValAvrg[i]->getAverage());
+	
+	////	highSensAngleAvrg[i]->newValue(hightestSensors[i]->getAngle());
+	////	hightestSensors[i]->setAvrgAngle(highSensAngleAvrg[i]->getAverage());
+	//}
+	
+	
 }
 
 std::vector<IrSensor*> BallPositionReader::getHighestSensor() {
@@ -44,13 +81,8 @@ void BallPositionReader::setHighestSensVec() {
 	}
 }
 
-void BallPositionReader::addHighestSensVec() {
-	
-	ballVector = hightestSensors[0]->getVector();
-
-	for (size_t i = 1; i < hightestSensors.size(); i++) {
-		ballVector = app->getGeometrie().addVectors(hightestSensors[i]->getVector(), ballVector);
-	}
+void BallPositionReader::addHighestSensVec() {	
+	ballVector = app->getGeometrie().addVectors(hightestSensors[0]->getVector(), hightestSensors[1]->getVector(), hightestSensors[2]->getVector(), hightestSensors[3]->getVector(), hightestSensors[4]->getVector());
 
 }
 

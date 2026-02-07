@@ -3,10 +3,30 @@
 
 Geometrie::Geometrie(Application* a) : app(a) {}
 
+std::tuple<float, float> Geometrie::vectorToAngle(Vector v){
+	float strenght;
+	strenght = std::sqrt(v.getX() * v.getX() + v.getY() * v.getY());
+	 
+	float angle;
+	angle = std::atan2(v.getY(), v.getX());
+	//if(angle < 0) {
+	//	angle += 360.0f;
+	//}
+	return std::make_tuple(angle, strenght);
+} 
+
+/**
+ * Vektor(x/y) aus Angle und Strength
+ */
 Vector Geometrie::angleToVector(float angle, float strength) {
-	float x = cos(angleToRad(angle) * strength);
-	float y = sin(angleToRad(angle) * strength);
+	float x = cos(angleToRad(angle)) * strength;
+	float y = sin(angleToRad(angle)) * strength;
 	return Vector(x,y);
+}
+
+float Geometrie::radToAngle(float rad) {
+	float angle = rad * 180 / PI;
+	return angle;
 }
 
 float Geometrie::angleToRad(float angle) {
@@ -23,10 +43,10 @@ float Geometrie::getMean(std::vector<float> ar) {
 	return mean;
 }
 
-Vector Geometrie::addVectors(const Vector& vec1, const Vector& vec2) {
+Vector Geometrie::addVectors(const Vector& vec1, const Vector& vec2, const Vector& vec3, const Vector& vec4,const Vector& vec5) {
 
-	float x = (vec1.getX() + vec2.getX()) * 0.5;
-	float y = (vec1.getY() + vec2.getY()) * 0.5;
+	float x = (vec1.getX() + vec2.getX() + vec3.getX() + vec4.getX() + vec5.getX()) / 5;
+	float y = (vec1.getY() + vec2.getY() + vec3.getY() + vec4.getY() + vec5.getY()) / 5;
 
 	return Vector(x, y);
 }

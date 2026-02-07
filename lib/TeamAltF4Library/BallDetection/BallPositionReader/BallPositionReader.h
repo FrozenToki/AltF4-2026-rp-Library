@@ -3,6 +3,7 @@
 #include "BallDetection/Vector/Vector.h"
 #include "Config/Config.h"
 #include "Sensorik/SensorBase/IrSensors/IrSensors.h"
+#include "BallDetection/MovingAverage/MovingAverage.h"
 #include <vector>
 
 
@@ -15,17 +16,24 @@ private:
 	IrSensor* irSensList[Config::COUNT_IR_SENSOR];
 	std::vector<float> valueList;
 	std::vector<IrSensor*> hightestSensors;
-	float mean;
 	Application* app;
 
 	Vector ballVector;
+
+	std::vector<MovingAverage*> highSensAngleAvrg;
+	std::vector<MovingAverage*> highSensValAvrg;
+
 public: 
 	BallPositionReader(Application* a);
+	
 	void setValues();
+	
 	std::vector<float> getValues();
+	
 	void setHighestSensor();
-	float getMean();
+	
 	std::vector<IrSensor*> getHighestSensor();
+	
 	void setHighestSensVec();
 	void addHighestSensVec();
 

@@ -21,5 +21,6 @@ public:
 	// as an instance of the button class.
 	IrSensor* getIrSensorByName(String n);
 	IrSensor* getIrSensorByIndex(int i);
+	IrSensor* getIrSensorByAngle(float angle);
 };
 
