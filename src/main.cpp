@@ -5,7 +5,6 @@
 
 Application app;
 
-//Teensy* te = app.getOutputManager().getTeensyByName("tennsy");
 IrSensor* s[Config::COUNT_IR_SENSOR];
 
 MovingAverage ballDistnaceAvrg(Config::COUNT_MOVING_AVERAGE);
@@ -15,8 +14,7 @@ void setup() {
 	for (int i = 0; i < Config::COUNT_IR_SENSOR; i++) {
 		s[i] =app.getSensorManager().getIrSensorByIndex(i);
 	}
-	
-	Serial1.begin(9600);
+	Serial1.begin(115200);
 
 
 }
@@ -77,6 +75,8 @@ void loop() {
 
 		//Serial.print(" Winkel: ");
   	Serial1.println(newAngle);
+
+		//te->send(newAngle);
 
 		//Serial.print(" neuer Winkel: ");
 		//Serial.print(newAngle);
