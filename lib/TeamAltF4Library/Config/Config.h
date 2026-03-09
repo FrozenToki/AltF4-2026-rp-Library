@@ -8,8 +8,7 @@
 // it needs to be accesed directly with Config::NameOfTheVariable.  
 class Config {
 public:
-	static constexpr int MAX_SENSORS = 20;
-	static constexpr int MAX_OUTPUTS = 1;  
+	static constexpr int MAX_SENSORS = 20; 
 	static constexpr int MAX_ERROR_MESSAGES = 5;
 
 	static constexpr int COUNT_IR_SENSOR = 16; 
@@ -18,4 +17,6 @@ public:
 	static const float IR_SENSOR_ANGLES[COUNT_IR_SENSOR];
 
 	static constexpr int COUNT_MOVING_AVERAGE = 3;
+
+	
 };

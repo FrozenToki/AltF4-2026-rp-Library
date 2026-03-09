@@ -4,15 +4,15 @@
 Geometrie::Geometrie(Application* a) : app(a) {}
 
 std::tuple<float, float> Geometrie::vectorToAngle(Vector v){
-	float strenght;
-	strenght = std::sqrt(v.getX() * v.getX() + v.getY() * v.getY());
+	float strength;
+	strength = std::sqrt(v.getX() * v.getX() + v.getY() * v.getY());
 	 
 	float angle;
 	angle = std::atan2(v.getY(), v.getX());
 	//if(angle < 0) {
 	//	angle += 360.0f;
 	//}
-	return std::make_tuple(angle, strenght);
+	return std::make_tuple(angle, strength);
 } 
 
 /**

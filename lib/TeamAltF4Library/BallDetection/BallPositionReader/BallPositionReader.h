@@ -32,7 +32,7 @@ public:
 	
 	void setHighestSensor();
 	
-	std::vector<IrSensor*> getHighestSensor();
+	std::vector<IrSensor*> getHighestSensors();
 	
 	void setHighestSensVec();
 	void addHighestSensVec();

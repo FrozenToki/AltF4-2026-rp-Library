@@ -1,7 +1,7 @@
 #include "Application.h"
 
 Application::Application() : sensorManager(this), sensorList(this), 
-	outputManager(this), outputList(this), errorMessages(this), irSensorReader(this),
+	errorMessages(this), irSensorReader(this),
 	ballPositionReader(this), geometrie(this) {} 
 
 SensorList& Application::getSensorList() {
@@ -10,14 +10,6 @@ SensorList& Application::getSensorList() {
 
 SensorManager& Application::getSensorManager() {
 	return sensorManager;
-}
-
-OutputList& Application::getOutputList() {
-	return outputList;
-}
-
-OutputManager& Application::getOutputManager() {
-	return outputManager;
 }
 
 Config& Application::getConfig() {

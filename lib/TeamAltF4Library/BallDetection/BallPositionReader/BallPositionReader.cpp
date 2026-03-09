@@ -70,7 +70,7 @@ void BallPositionReader::setHighestSensor() {
 	
 }
 
-std::vector<IrSensor*> BallPositionReader::getHighestSensor() {
+std::vector<IrSensor*> BallPositionReader::getHighestSensors() {
 	return hightestSensors;
 }
 
