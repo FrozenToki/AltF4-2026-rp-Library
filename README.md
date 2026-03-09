@@ -8,6 +8,6 @@ We compete in **RoboCup Junior Soccer – 1v1 Lightweight** and develop our own 
 
 ## Main programm of the Robot:
 
-[https://github.com/FrozenToki/AltF4-2026-rp-Library](https://github.com/FrozenToki/AltF4-2026-innit-Library)
+https://github.com/FrozenToki/AltF4-2026-innit-Library
 
 ### Made by Team Alt+F4
