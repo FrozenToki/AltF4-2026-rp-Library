@@ -8,4 +8,5 @@ public:
 	static const char* IR_SENSOR_NAMES[16];
 	static const float IR_SENSOR_ANGLES[16];
 
+	static constexpr int COUNT_IR_SENSOR = 16;
 };
